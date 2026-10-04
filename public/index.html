@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Color Buttons App</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            transition: background-color 0.3s ease;
-        }
-
-        button {
-            padding: 12px 24px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Color Buttons App</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+margin-top: 50px;
+transition: background-color 0.3s ease;
+}
+button {
+padding: 12px 24px;
+font-size: 18px;
+margin: 10px;
+cursor: pointer;
+}
+</style>
 </head>
-
 <body>
+<h1>Click a Button to Change Background</h1>
+<script>
+class Button {
+constructor(text, id, color){
+this.element = document.createElement("button");
+this.element.innerText = text;
+this.element.id = id;
+this.color = color;
+this.element.addEventListener('click', () => 
+this.changeBackground());
+}
 
-    <h1>Click a Button to Change Background</h1>
+changeBackground() {
+document.body.style.backgroundColor = this.color
+}
 
-    <button id="blueBtn">Blue</button>
-    <button id="redBtn">Red</button>
+appendTo(parent) {
+parent.appendChild(this.element);
+}
+}
 
-    <script>
-        document.getElementById("blueBtn").addEventListener("click", () => {
-            document.body.style.backgroundColor = "blue";
-        });
-
-        document.getElementById("redBtn").addEventListener("click", () => {
-            document.body.style.backgroundColor = "red";
-        });
-    </script>
-
+const buttonB = new Button('Blue', 'blueButton', 'blue')
+const buttonR = new Button('Red', 'redButton', 'red')
+buttonB.appendTo(document.body)
+buttonR.appendTo(document.body)
+</script>
 </body>
 </html>
